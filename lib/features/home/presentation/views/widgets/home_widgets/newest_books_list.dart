@@ -7,8 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-class BestSellerList extends StatelessWidget {
-  const BestSellerList({super.key});
+class NewestBooksList extends StatelessWidget {
+  const NewestBooksList({super.key});
 
   @override
   Widget build(BuildContext context) {
