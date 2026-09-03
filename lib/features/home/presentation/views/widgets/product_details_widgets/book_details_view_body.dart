@@ -17,7 +17,7 @@ class BookDetailsViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gap(20),
-          BookDetailsAppBar(),
+          SafeArea(child: BookDetailsAppBar()),
           Gap(40),
           BookDetailsImage(),
           Gap(20),
@@ -31,8 +31,8 @@ class BookDetailsViewBody extends StatelessWidget {
           ),
           Gap(20),
           AlsoLikeBooksList(),
-          Gap(20)
-       
+          Gap(30)
+
         ],
       ),
     );

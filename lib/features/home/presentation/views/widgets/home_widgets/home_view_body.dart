@@ -19,7 +19,7 @@ class HomeViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap(20),
-              HomeAppBar(),
+              SafeArea(child: HomeAppBar()),
               Gap(40),
               HomeBooksList(),
               Gap(40),
@@ -35,7 +35,7 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.fromLTRB(10,0, 10, 30),
           sliver: NewestBooksList(),
         ),
       ],
