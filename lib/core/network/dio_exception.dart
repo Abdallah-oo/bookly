@@ -26,7 +26,7 @@ class DioExceptions extends ApiError {
       case DioExceptionType.receiveTimeout:
         return const ApiError(message: 'Server took too long to respond.');
       case DioExceptionType.badResponse:
-        return DioExceptions.fromResponse(
+        return DioExceptions._fromResponse(
           response: error.response ?? '',
           statusCode: statusCode ?? 0,
         );
@@ -43,7 +43,7 @@ class DioExceptions extends ApiError {
     }
   }
 
-  factory DioExceptions.fromResponse({
+  factory DioExceptions._fromResponse({
     required dynamic response,
     required int statusCode,
   }) {
