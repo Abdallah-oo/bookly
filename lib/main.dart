@@ -1,12 +1,15 @@
 import 'package:bookly/bookly_app.dart';
 import 'package:bookly/core/services/hive/hive_services.dart';
+import 'package:bookly/core/utils/helpers/setup_bloc_observer.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = SetupBlocObserver();
   await _initHive();
   await dotenv.load(fileName: '.env');
   runApp(const Bookly());
