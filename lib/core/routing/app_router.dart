@@ -1,8 +1,12 @@
+import 'package:bookly/core/dependency_injection/get_it.dart';
 import 'package:bookly/core/routing/routes.dart';
+import 'package:bookly/features/home/presentation/manager/cubit/fetch_home_books_cubit/fetch_home_books_cubit.dart';
+import 'package:bookly/features/home/presentation/manager/cubit/fetch_newest_books_cubit/fetch_newest_books_cubit.dart';
 import 'package:bookly/features/home/presentation/views/book_details_view.dart';
 import 'package:bookly/features/home/presentation/views/home_view.dart';
 import 'package:bookly/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -14,7 +18,19 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: Routes.kHome,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<FetchHomeBooksCubit>(
+              create: (context) =>
+                  getIt<FetchHomeBooksCubit>()..fetchHomeBooks(),
+            ),
+            BlocProvider<FetchNewestBooksCubit>(
+              create: (context) =>
+                  getIt<FetchNewestBooksCubit>()..fetchNewestBooks(),
+            ),
+          ],
+          child: const HomeView(),
+        ),
       ),
 
       GoRoute(

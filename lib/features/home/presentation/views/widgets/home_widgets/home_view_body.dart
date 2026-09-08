@@ -1,8 +1,8 @@
 import 'package:bookly/core/themes/app_text_styles.dart';
 import 'package:bookly/core/widgets/custom_text.dart';
+import 'package:bookly/features/home/presentation/views/widgets/home_widgets/home_books_list_builder.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/newest_books_list.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/home_appbar.dart';
-import 'package:bookly/features/home/presentation/views/widgets/home_widgets/home_books_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -21,7 +21,7 @@ class HomeViewBody extends StatelessWidget {
               Gap(20),
               SafeArea(child: HomeAppBar()),
               Gap(40),
-              HomeBooksList(),
+              HomeBooksListBuilder(),
               Gap(40),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
@@ -35,7 +35,7 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverPadding(
-          padding: EdgeInsets.fromLTRB(10,0, 10, 30),
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 30),
           sliver: NewestBooksList(),
         ),
       ],
