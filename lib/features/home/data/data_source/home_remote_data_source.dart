@@ -11,13 +11,18 @@ abstract interface class HomeRemoteDataSource {
 
 class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService _apiService;
+
   HomeBooksRemoteDataSourceImpl(this._apiService);
 
   @override
-  Future<List<BookEntity>> fetchHomeBooks() async {
+  Future<List<BookEntity>> fetchHomeBooks({int startIndex = 0, int maxResults = 40}) async {
     final response = await _apiService.get(
       endpoint: ApiEndpoints.volumes,
-      queryParameters: {'q': 'subject:bestseller'},
+      queryParameters: {
+        'q': 'subject:programming',
+        'maxResults': maxResults,
+        'startIndex': startIndex,
+      },
     );
     final List<BookEntity> books = fetchBooks(response);
     HiveService.saveHomeBooks(books);
@@ -25,10 +30,15 @@ class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<BookEntity>> fetchHomeNewestBooks() async {
+  Future<List<BookEntity>> fetchHomeNewestBooks({int startIndex = 0, int maxResults = 40}) async {
     final response = await _apiService.get(
       endpoint: ApiEndpoints.volumes,
-      queryParameters: {'q': 'subject:fiction', 'orderBy': 'newest'},
+      queryParameters: {
+        'q': 'subject:fiction',
+        'orderBy': 'newest',
+        'maxResults': maxResults,
+        'startIndex': startIndex,
+      },
     );
     final List<BookEntity> books = fetchBooks(response);
     HiveService.saveNewestBooks(books);
@@ -38,7 +48,7 @@ class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
 
 //helper function
 List<BookEntity> fetchBooks(dynamic response) {
-  List<Map<String, dynamic>> listOfBooks = response['items'];
+  List listOfBooks = response['items'];
   final List<BookEntity> books = listOfBooks.map((m) => BookModel.fromJson(m)).toList();
   return books;
 }
