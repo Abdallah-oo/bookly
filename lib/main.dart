@@ -1,4 +1,5 @@
 import 'package:bookly/bookly_app.dart';
+import 'package:bookly/core/dependency_injection/get_it.dart';
 import 'package:bookly/core/services/hive/hive_services.dart';
 import 'package:bookly/core/utils/helpers/setup_bloc_observer.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
@@ -10,8 +11,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SetupBlocObserver();
+
   await _initHive();
   await dotenv.load(fileName: '.env');
+  GetItServiceLocator.setup();
   runApp(const Bookly());
 }
 
@@ -27,5 +30,7 @@ void _registerHiveAdapters() {
 
 Future<void> _openHiveBoxes() async {
   await Future.wait([Hive.openBox<BookEntity>(HiveService.homebooksBoxsName)]);
-  await Future.wait([Hive.openBox<BookEntity>(HiveService.newestbooksBoxsName)]);
+  await Future.wait([
+    Hive.openBox<BookEntity>(HiveService.newestbooksBoxsName),
+  ]);
 }
