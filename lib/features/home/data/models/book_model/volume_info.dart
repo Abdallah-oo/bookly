@@ -5,14 +5,14 @@ import 'reading_modes.dart';
 
 class VolumeInfo {
   String? title;
+  String? subtitle;
   List<String>? authors;
   String? publisher;
   String? publishedDate;
-  String? description;
   List<IndustryIdentifier>? industryIdentifiers;
   ReadingModes? readingModes;
   int? pageCount;
-  String? prnumType;
+  String? printType;
   List<String>? categories;
   String? maturityRating;
   bool? allowAnonLogging;
@@ -26,14 +26,14 @@ class VolumeInfo {
 
   VolumeInfo({
     this.title,
+    this.subtitle,
     this.authors,
     this.publisher,
     this.publishedDate,
-    this.description,
     this.industryIdentifiers,
     this.readingModes,
     this.pageCount,
-    this.prnumType,
+    this.printType,
     this.categories,
     this.maturityRating,
     this.allowAnonLogging,
@@ -48,10 +48,10 @@ class VolumeInfo {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json['title'] as String?,
-    authors: json['authors'] as List<String>?,
+    subtitle: json['subtitle'] as String?,
+    authors: (json['authors'] as List<dynamic>?)?.map((e) => e.toString()).toList(),
     publisher: json['publisher'] as String?,
     publishedDate: json['publishedDate'] as String?,
-    description: json['description'] as String?,
     industryIdentifiers: (json['industryIdentifiers'] as List<dynamic>?)
         ?.map((e) => IndustryIdentifier.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -59,14 +59,16 @@ class VolumeInfo {
         ? null
         : ReadingModes.fromJson(json['readingModes'] as Map<String, dynamic>),
     pageCount: json['pageCount'] as int?,
-    prnumType: json['prnumType'] as String?,
-    categories: json['categories'] as List<String>?,
+    printType: json['printType'] as String?,
+    categories: (json['categories'] as List<dynamic>?)?.map((e) => e.toString()).toList(),
     maturityRating: json['maturityRating'] as String?,
     allowAnonLogging: json['allowAnonLogging'] as bool?,
     contentVersion: json['contentVersion'] as String?,
     panelizationSummary: json['panelizationSummary'] == null
         ? null
-        : PanelizationSummary.fromJson(json['panelizationSummary'] as Map<String, dynamic>),
+        : PanelizationSummary.fromJson(
+            json['panelizationSummary'] as Map<String, dynamic>,
+          ),
     imageLinks: json['imageLinks'] == null
         ? null
         : ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
@@ -78,14 +80,14 @@ class VolumeInfo {
 
   Map<String, dynamic> toJson() => {
     'title': title,
+    'subtitle': subtitle,
     'authors': authors,
     'publisher': publisher,
     'publishedDate': publishedDate,
-    'description': description,
     'industryIdentifiers': industryIdentifiers?.map((e) => e.toJson()).toList(),
     'readingModes': readingModes?.toJson(),
     'pageCount': pageCount,
-    'prnumType': prnumType,
+    'printType': printType,
     'categories': categories,
     'maturityRating': maturityRating,
     'allowAnonLogging': allowAnonLogging,
