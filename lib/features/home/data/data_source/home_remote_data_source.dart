@@ -5,8 +5,8 @@ import 'package:bookly/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 
 abstract interface class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchHomeBooks();
-  Future<List<BookEntity>> fetchHomeNewestBooks();
+  Future<List<BookEntity>> fetchHomeBooks({int startIndex = 0});
+  Future<List<BookEntity>> fetchHomeNewestBooks({int startIndex = 0});
 }
 
 class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -15,28 +15,27 @@ class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeBooksRemoteDataSourceImpl(this._apiService);
 
   @override
-  Future<List<BookEntity>> fetchHomeBooks({int startIndex = 0, int maxResults = 40}) async {
+  Future<List<BookEntity>> fetchHomeBooks({int startIndex = 0}) async {
     final response = await _apiService.get(
       endpoint: ApiEndpoints.volumes,
-      queryParameters: {
-        'q': 'subject:programming',
-        'maxResults': maxResults,
-        'startIndex': startIndex,
-      },
+      queryParameters: {'q': 'subject:graphic', 'maxResults': '10', 'startIndex': startIndex},
     );
     final List<BookEntity> books = fetchBooks(response);
-    HiveService.saveHomeBooks(books);
+    // كاش بس لأول صفحة عشان مانكسرش باقي الصفحات
+    if (startIndex == 0) {
+      HiveService.saveHomeBooks(books);
+    }
     return books;
   }
 
   @override
-  Future<List<BookEntity>> fetchHomeNewestBooks({int startIndex = 0, int maxResults = 40}) async {
+  Future<List<BookEntity>> fetchHomeNewestBooks({int startIndex = 0}) async {
     final response = await _apiService.get(
       endpoint: ApiEndpoints.volumes,
       queryParameters: {
-        'q': 'subject:fiction',
+        'q': 'subject:games',
         'orderBy': 'newest',
-        'maxResults': maxResults,
+        'maxResults': '10',
         'startIndex': startIndex,
       },
     );
@@ -46,9 +45,8 @@ class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 }
 
-//helper function
 List<BookEntity> fetchBooks(dynamic response) {
-  List listOfBooks = response['items'];
+  List listOfBooks = response['items'] ?? [];
   final List<BookEntity> books = listOfBooks.map((m) => BookModel.fromJson(m)).toList();
   return books;
 }

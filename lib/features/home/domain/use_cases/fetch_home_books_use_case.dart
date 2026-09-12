@@ -4,12 +4,17 @@ import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/domain/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 
-class FetchHomeBooksUseCase extends UseCase<List<BookEntity>, NoParams> {
-  final HomeRepo _homeRepo;
+class FetchHomeBooksParams {
+  final int pageKey;
+  const FetchHomeBooksParams({required this.pageKey});
+}
 
+class FetchHomeBooksUseCase extends UseCase<List<BookEntity>, FetchHomeBooksParams> {
+  final HomeRepo _homeRepo;
   FetchHomeBooksUseCase({required HomeRepo homeRepo}) : _homeRepo = homeRepo;
+
   @override
-  Future<Either<ApiError, List<BookEntity>>> call(NoParams params) {
-    return _homeRepo.fetchHomeBooks();
+  Future<Either<ApiError, List<BookEntity>>> call(FetchHomeBooksParams params) {
+    return _homeRepo.fetchHomeBooks(pageKey: params.pageKey);
   }
 }

@@ -11,14 +11,21 @@ class HomeRepoImp implements HomeRepo {
   final HomeLocalDataSource localData;
   final HomeRemoteDataSource remoteData;
   HomeRepoImp({required this.localData, required this.remoteData});
-  @override
-  Future<Either<ApiError, List<BookEntity>>> fetchHomeBooks() async {
+    @override
+  Future<Either<ApiError, List<BookEntity>>> fetchHomeBooks({
+    required int pageKey,
+  }) async {
     try {
-      final List<BookEntity> books = localData.fetchHomeBooks();
-      if (books.isNotEmpty) {
-        return right(books);
+      // الكاش المحلي بيتستخدم بس في أول صفحة
+      if (pageKey == 0) {
+        final List<BookEntity> cachedBooks = localData.fetchHomeBooks();
+        if (cachedBooks.isNotEmpty) {
+          return right(cachedBooks);
+        }
       }
-      final List<BookEntity> remoteBooks = await remoteData.fetchHomeBooks();
+      final List<BookEntity> remoteBooks = await remoteData.fetchHomeBooks(
+        startIndex: pageKey,
+      );
       return right(remoteBooks);
     } catch (e) {
       if (e is DioException) {
@@ -27,15 +34,21 @@ class HomeRepoImp implements HomeRepo {
       return left(ApiError(message: '$e'));
     }
   }
-
   @override
-  Future<Either<ApiError, List<BookEntity>>> fetchHomeNewestBooks() async {
+  Future<Either<ApiError, List<BookEntity>>> fetchHomeNewestBooks({
+    required int pageKey,
+  }) async {
     try {
-      final List<BookEntity> books = localData.fetchHomeNewestBooks();
-      if (books.isNotEmpty) {
-        return right(books);
+
+   if (pageKey == 0) {
+        final List<BookEntity> cachedBooks = localData.fetchHomeNewestBooks();
+        if (cachedBooks.isNotEmpty) {
+          return right(cachedBooks);
+        }
       }
-      final List<BookEntity> remoteBooks = await remoteData.fetchHomeNewestBooks();
+      final List<BookEntity> remoteBooks = await remoteData.fetchHomeNewestBooks(
+        startIndex: pageKey,
+      );
       return right(remoteBooks);
     } catch (e) {
       if (e is DioException) {

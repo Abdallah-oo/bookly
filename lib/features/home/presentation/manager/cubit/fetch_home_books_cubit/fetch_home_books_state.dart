@@ -9,7 +9,19 @@ final class FetchHomeBooksLoading extends FetchHomeBooksState {}
 
 final class FetchHomeBooksSuccess extends FetchHomeBooksState {
   final List<BookEntity> books;
-  FetchHomeBooksSuccess({required this.books});
+  final bool hasReachedMax;
+  FetchHomeBooksSuccess({required this.books, required this.hasReachedMax});
+}
+
+final class FetchHomeBooksLoadingMore extends FetchHomeBooksState {
+  final List<BookEntity> books;
+  FetchHomeBooksLoadingMore({required this.books});
+}
+
+final class FetchHomeBooksLoadMoreFailure extends FetchHomeBooksState {
+  final List<BookEntity> books;
+  final String errorMessage;
+  FetchHomeBooksLoadMoreFailure({required this.books, required this.errorMessage});
 }
 
 final class FetchHomeBooksFailure extends FetchHomeBooksState {
