@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 class HiveService {
   static const String homebooksBoxsName = 'HomeBooks';
-  static const String newestbooksBoxsName = 'HomeBooks';
+  static const String newestbooksBoxsName = 'NewestHomeBooks';
 
   /// ---------------- home books ----------------
 
