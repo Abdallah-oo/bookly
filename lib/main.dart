@@ -30,7 +30,5 @@ void _registerHiveAdapters() {
 
 Future<void> _openHiveBoxes() async {
   await Future.wait([Hive.openBox<BookEntity>(HiveService.homebooksBoxsName)]);
-  await Future.wait([
-    Hive.openBox<BookEntity>(HiveService.newestbooksBoxsName),
-  ]);
+  await Future.wait([Hive.openBox<BookEntity>(HiveService.newestbooksBoxsName)]);
 }

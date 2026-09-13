@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:bookly/core/routing/app_router.dart';
 import 'package:bookly/core/routing/routes.dart';
 import 'package:bookly/core/themes/app_text_styles.dart';
 import 'package:bookly/core/utils/extensions/responsive.dart';
@@ -37,7 +40,22 @@ class NewestBooksList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
-        onTap: () => context.push(Routes.kDetails),
+        onTap: () {
+          final bookIndex = newestBooks.indexOf(newestBook);
+          final int start = bookIndex + 1;
+          final int end = min(start + 6, newestBooks.length);
+
+          final alsoLikeBooks = start < newestBooks.length
+              ? newestBooks.sublist(start, end)
+              : <BookEntity>[];
+          final bookDetails = BookDetails(
+            title: newestBook.title ?? 'No Title',
+            author: newestBook.autherName ?? 'Unknown Author',
+            imageUrl: newestBook.image ?? '',
+            alsoLikeBooks: alsoLikeBooks,
+          );
+          context.push(Routes.kDetails, extra: bookDetails);
+        },
         child: Row(
           children: [
             Container(

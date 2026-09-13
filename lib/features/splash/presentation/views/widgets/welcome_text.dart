@@ -1,5 +1,3 @@
-import 'package:bookly/core/themes/app_text_styles.dart';
-import 'package:bookly/core/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeText extends StatelessWidget {
@@ -7,14 +5,32 @@ class WelcomeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 28),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: CustomText(
-              text: 'Welcome To Bookly App!',
-              style: AppTextStyles.textStyle16,
+          Text(
+            'Stories waiting\nfor you.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 36,
+              height: 1.08,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -1.2,
+            ),
+          ),
+
+          SizedBox(height: 16),
+
+          Text(
+            'Discover your next favorite book,\nand make every page count.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFF8B96A8),
+              fontSize: 15,
+              height: 1.6,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ],

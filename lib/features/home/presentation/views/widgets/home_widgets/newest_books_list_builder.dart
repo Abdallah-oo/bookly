@@ -5,6 +5,7 @@ import 'package:bookly/features/home/presentation/views/widgets/home_widgets/loa
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/newest_books_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class NewestBooksListBuilder extends StatelessWidget {
   const NewestBooksListBuilder({super.key});
@@ -45,7 +46,23 @@ class NewestBooksListBuilder extends StatelessWidget {
           return SliverToBoxAdapter(
             child: SizedBox(
               height: context.screenHeight * 0.28,
-              child: Center(child: Text(state.errorMessage)),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(state.errorMessage),
+                    Gap(20),
+                    ElevatedButton(
+                      onPressed: () => cubit.fetchNewestBooks(),
+                      style: ButtonStyle(
+                        padding: WidgetStatePropertyAll(EdgeInsets.all(5)),
+                        backgroundColor: WidgetStatePropertyAll(Colors.white),
+                      ),
+
+                      child: Text('Retry'),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
         } else {

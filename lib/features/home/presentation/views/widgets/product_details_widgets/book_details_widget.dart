@@ -5,7 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
 class BookDetailsWidget extends StatelessWidget {
-  const BookDetailsWidget({super.key});
+  const BookDetailsWidget({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
