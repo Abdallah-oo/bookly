@@ -1,5 +1,6 @@
 import 'package:bookly/core/utils/extensions/responsive.dart';
 import 'package:bookly/features/home/presentation/manager/cubit/fetch_newest_books_cubit/fetch_newest_books_cubit.dart';
+import 'package:bookly/features/home/presentation/views/widgets/home_widgets/fetch_books_retry_button.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/home_books_list.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/loading_newest_books_state.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/newest_books_list.dart';
@@ -44,24 +45,13 @@ class NewestBooksListBuilder extends StatelessWidget {
           );
         } else if (state is FetchNewestBooksFailure) {
           return SliverToBoxAdapter(
-            child: SizedBox(
-              height: context.screenHeight * 0.28,
-              child: Center(
-                child: Column(
-                  children: [
-                    Text(state.errorMessage),
-                    Gap(20),
-                    ElevatedButton(
-                      onPressed: () => cubit.fetchNewestBooks(),
-                      style: ButtonStyle(
-                        padding: WidgetStatePropertyAll(EdgeInsets.all(5)),
-                        backgroundColor: WidgetStatePropertyAll(Colors.white),
-                      ),
-
-                      child: Text('Retry'),
-                    ),
-                  ],
-                ),
+            child: Center(
+              child: Column(
+                children: [
+                  Text(state.errorMessage),
+                  Gap(20),
+                  FetchBooksRetryButton(cubit: cubit),
+                ],
               ),
             ),
           );
@@ -75,3 +65,4 @@ class NewestBooksListBuilder extends StatelessWidget {
     );
   }
 }
+

@@ -1,9 +1,11 @@
 import 'package:bookly/core/utils/extensions/responsive.dart';
 import 'package:bookly/features/home/presentation/manager/cubit/fetch_home_books_cubit/fetch_home_books_cubit.dart';
+import 'package:bookly/features/home/presentation/views/widgets/home_widgets/fetch_books_retry_button.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/home_books_list.dart';
 import 'package:bookly/features/home/presentation/views/widgets/home_widgets/loading_home_books_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class HomeBooksListBuilder extends StatelessWidget {
   const HomeBooksListBuilder({super.key});
@@ -35,9 +37,14 @@ class HomeBooksListBuilder extends StatelessWidget {
             onFetchNextPage: cubit.fetchNextPage,
           );
         } else if (state is FetchHomeBooksFailure) {
-          return SizedBox(
-            height: context.screenHeight * 0.28,
-            child: Center(child: Text(state.errorMessage)),
+          return Center(
+            child: Column(
+              children: [
+                Text(state.errorMessage),
+                Gap(20),
+                FetchBooksRetryButton(cubit: cubit),
+              ],
+            ),
           );
         } else {
           return SizedBox(
