@@ -15,17 +15,18 @@
 
 ## 🎬 Demo
 
-<!--
-  HOW TO ADD THE VIDEO:
-  Option 1 (recommended): Edit this README on GitHub, then drag & drop your .mp4 file here.
-                          GitHub uploads it and gives you a link that plays inline.
-  Option 2: Upload to YouTube and use a clickable thumbnail:
-            [![Watch the demo](path/to/thumbnail.png)](https://youtu.be/YOUR_VIDEO_ID)
--->
+<p align="center">
+  <a href="https://youtu.be/WUHwXAAGYQI">
+    <img src="https://img.youtube.com/vi/WUHwXAAGYQI/hqdefault.jpg" alt="Watch the Bookly App demo on YouTube" width="640" />
+  </a>
+</p>
 
-> 🎥 **Video demo:** _add your video here_
+<p align="center">
+  <a href="https://youtu.be/WUHwXAAGYQI"><b>▶️ Watch the full demo on YouTube</b></a>
+</p>
 
 ---
+
 
 ## ✨ Features
 
@@ -177,9 +178,10 @@ lib/
 └── main.dart
 ```
 
-
-
 ---
+
+
+
 
 ## 🧠 What I Learned
 
@@ -191,18 +193,14 @@ lib/
 
 ---
 
-## 🤝 Contributing
-
-Suggestions and improvements are welcome. Feel free to open an issue or submit a pull request.
-
----
 
 ## 👤 Author
 
-**Your Name**
+**Abdallah Ahmed**
 
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [your-profile](https://www.linkedin.com/in/your-profile)
+- GitHub: [@your-username](https://github.com/Abdallah-oo/)
+- LinkedIn: [your-profile](https://www.linkedin.com/in/abdallah-oo/)
+- Portfolio: [your-profile](https://abdallah-ahmed1.vercel.app/)
 
 ---
 
