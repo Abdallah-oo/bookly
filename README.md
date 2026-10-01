@@ -194,14 +194,5 @@ lib/
 ---
 
 
-## 👤 Author
-
-**Abdallah Ahmed**
-
-- GitHub: [@your-username](https://github.com/Abdallah-oo/)
-- LinkedIn: [your-profile](https://www.linkedin.com/in/abdallah-oo/)
-- Portfolio: [your-profile](https://abdallah-ahmed1.vercel.app/)
-
----
 
 <p align="center">If you found this project useful, consider giving it a ⭐</p>
