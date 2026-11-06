@@ -40,7 +40,7 @@ class HomeBooksListBuilder extends StatelessWidget {
           return Center(
             child: Column(
               children: [
-                Text(state.errorMessage),
+                Text(state.errorMessage,style: TextStyle(fontSize: 14),),
                 Gap(20),
                 FetchBooksRetryButton(cubit: cubit),
               ],

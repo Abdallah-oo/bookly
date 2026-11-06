@@ -196,14 +196,5 @@ lib/
 ---
 
 
-## 👤 Author
-
-**Your Name**
-
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [your-profile](https://www.linkedin.com/in/your-profile)
-- Porf: [your-profile](https://www.linkedin.com/in/your-profile)
-
----
 
 <p align="center">If you found this project useful, consider giving it a ⭐</p>

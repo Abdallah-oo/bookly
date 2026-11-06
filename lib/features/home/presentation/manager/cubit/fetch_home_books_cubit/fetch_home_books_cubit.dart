@@ -25,18 +25,9 @@ class FetchHomeBooksCubit extends Cubit<FetchHomeBooksState> {
     await _fetchPage();
   }
 
-  /// جلب الصفحة اللي بعد كده
-  Future<void> fetchNextPage() async {
-    if (_isFetching || _hasReachedMax) return;
-    emit(FetchHomeBooksLoadingMore(books: List.unmodifiable(_books)));
-    await _fetchPage();
-  }
-
   Future<void> _fetchPage() async {
     _isFetching = true;
-    final result = await _homeBooksUsecase.call(
-      FetchHomeBooksParams(pageKey: _nextPageKey),
-    );
+    final result = await _homeBooksUsecase.call(FetchHomeBooksParams(pageKey: _nextPageKey));
     _isFetching = false;
 
     result.fold(
@@ -63,5 +54,12 @@ class FetchHomeBooksCubit extends Cubit<FetchHomeBooksState> {
         );
       },
     );
+  }
+
+  /// جلب الصفحة اللي بعد كده
+  Future<void> fetchNextPage() async {
+    if (_isFetching || _hasReachedMax) return;
+    emit(FetchHomeBooksLoadingMore(books: List.unmodifiable(_books)));
+    await _fetchPage();
   }
 }

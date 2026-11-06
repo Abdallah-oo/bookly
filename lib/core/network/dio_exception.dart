@@ -9,12 +9,12 @@ class DioExceptions extends ApiError {
     final data = error.response?.data;
 
     // Try to extract a message from the response body first
-    if (data is Map<String, dynamic> && data['message'] != null) {
-      return ApiError(
-        message: data['message'].toString(),
-        statusCode: statusCode,
-      );
-    }
+    // if (data is Map<String, dynamic> && data['message'] != null) {
+    //   return ApiError(
+    //     message: data['message'].toString(),
+    //     statusCode: statusCode,
+    //   );
+    // }
 
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
@@ -126,7 +126,7 @@ class DioExceptions extends ApiError {
       case 503:
         return DioExceptions(
           message:
-              serverMessage ??
+
               'The service is temporarily unavailable. Please try again later.',
         );
 

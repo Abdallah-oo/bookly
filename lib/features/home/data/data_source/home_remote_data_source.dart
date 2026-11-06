@@ -18,7 +18,7 @@ class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
   Future<List<BookEntity>> fetchHomeBooks({int startIndex = 0}) async {
     final response = await _apiService.get(
       endpoint: ApiEndpoints.volumes,
-      queryParameters: {'q': 'subject:graphic', 'maxResults': '10', 'startIndex': startIndex},
+      queryParameters: {'q': 'graphic', 'maxResults': '10', 'startIndex': startIndex},
     );
     final List<BookEntity> books = fetchBooks(response);
     // كاش بس لأول صفحة عشان مانكسرش باقي الصفحات
@@ -33,7 +33,7 @@ class HomeBooksRemoteDataSourceImpl implements HomeRemoteDataSource {
     final response = await _apiService.get(
       endpoint: ApiEndpoints.volumes,
       queryParameters: {
-        'q': 'subject:games',
+        'q': 'games',
         'orderBy': 'newest',
         'maxResults': '10',
         'startIndex': startIndex,
