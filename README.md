@@ -17,7 +17,7 @@
 
 <p align="center">
   <a href="https://youtu.be/WUHwXAAGYQI">
-    <img src="https://img.youtube.com/vi/WUHwXAAGYQI/hqdefault.jpg" alt="Watch the Bookly App demo on YouTube" width="640" />
+    
   </a>
 </p>
 
