@@ -17,7 +17,9 @@
 
 <p align="center">
   <a href="https://youtu.be/WUHwXAAGYQI">
-    <img src="https://img.youtube.com/vi/WUHwXAAGYQI/hqdefault.jpg" alt="Watch the Bookly App demo on YouTube" width="640" />
+    <img src="./assets/images/bookly.jpeg"
+     alt="Bookly App Demo"
+     width="640" />
   </a>
 </p>
 
@@ -196,11 +198,11 @@ lib/
 
 ## 👤 Author
 
-**Abdallah Ahmed**
+**Your Name**
 
-- GitHub: [@your-username](https://github.com/Abdallah-oo/)
-- LinkedIn: [your-profile](https://www.linkedin.com/in/abdallah-oo/)
-- Portfolio: [your-profile](https://abdallah-ahmed1.vercel.app/)
+- GitHub: [@your-username](https://github.com/your-username)
+- LinkedIn: [your-profile](https://www.linkedin.com/in/your-profile)
+- Porf: [your-profile](https://www.linkedin.com/in/your-profile)
 
 ---
 
